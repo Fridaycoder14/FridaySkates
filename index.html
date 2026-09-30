@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friday Skates | NOLA Skateboarding & 1-on-1 Lessons</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo-link" onclick="switchPage('home')">
+                <img src="img/logo.png" alt="Friday Skates Logo" class="logo-img">
+                <div class="logo-text">FRIDAY<span>SKATES</span></div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <a href="javascript:void(0)" onclick="switchPage('home')" id="nav-home" class="active"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="javascript:void(0)" onclick="switchPage('about')" id="nav-about"><i class="fa-solid fa-user"></i> About Me</a>
+                <a href="javascript:void(0)" onclick="switchPage('shop')" id="nav-shop"><i class="fa-solid fa-shop"></i> Shop</a>
+                <a href="javascript:void(0)" onclick="switchPage('lessons')" id="nav-lessons"><i class="fa-solid fa-graduation-cap"></i> Lessons</a>
+                <a href="javascript:void(0)" onclick="switchPage('spots')" id="nav-spots"><i class="fa-solid fa-map-location-dot"></i> NOLA Spots</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="cart-trigger" onclick="toggleCart(true)">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-count-badge" id="cartBadge">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-nav" id="mobileNav">
+            <a href="javascript:void(0)" onclick="switchPage('home'); toggleMobileMenu();"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="javascript:void(0)" onclick="switchPage('about'); toggleMobileMenu();"><i class="fa-solid fa-user"></i> About Me</a>
+            <a href="javascript:void(0)" onclick="switchPage('shop'); toggleMobileMenu();"><i class="fa-solid fa-shop"></i> Shop</a>
+            <a href="javascript:void(0)" onclick="switchPage('lessons'); toggleMobileMenu();"><i class="fa-solid fa-graduation-cap"></i> Lessons</a>
+            <a href="javascript:void(0)" onclick="switchPage('spots'); toggleMobileMenu();"><i class="fa-solid fa-map-location-dot"></i> NOLA Spots</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- HOME PAGE -->
+        <section id="page-home" class="page-section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="hero-badge"><i class="fa-solid fa-location-dot"></i> New Orleans, LA</span>
+                    <h1 class="hero-title">EVERY DAY IS <span>FRIDAY</span> WHEN YOU SKATE</h1>
+                    <p class="hero-subtitle">Official shop, skateboarding lessons, skate spot map</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-lg" onclick="switchPage('lessons')"><i class="fa-solid fa-calendar-check"></i> Book 1-on-1 Lessons</button>
+                        <button class="btn btn-outline btn-lg" onclick="switchPage('shop')"><i class="fa-solid fa-bag-shopping"></i> Shop Gear</button>
+                    </div>
+                </div>
+            </div>
+
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Why Skate With Us</h2>
+                        <p>Passion, community, and progression on four wheels.</p>
+                    </div>
+                    <div class="grid grid-3">
+                        <div class="card shadow text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-user-ninja feature-icon"></i>
+                                <h3>1-on-1 Coaching</h3>
+                                <p>Classes that cater to your level and goals, whether landing your first ollie or mastering park transition</p>
+                                <button class="btn btn-outline" style="margin-top:1rem;" onclick="switchPage('lessons')">Learn More</button>
+                            </div>
+                        </div>
+                        <div class="card shadow text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-socks feature-icon"></i>
+                                <h3>Merch & Decks</h3>
+                                <p>Custom made clothing made in New York along with custom decks.</p>
+                                <button class="btn btn-outline" style="margin-top:1rem;" onclick="switchPage('shop')">Visit Shop</button>
+                            </div>
+                        </div>
+                        <div class="card shadow text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-map-pin feature-icon"></i>
+                                <h3>NOLA Spot Guide</h3>
+                                <p>A map dedicated to showing the best skateparks and street spots around New Orleans</p>
+                                <button class="btn btn-outline" style="margin-top:1rem;" onclick="switchPage('spots')">Explore Spots</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ABOUT ME PAGE -->
+        <section id="page-about" class="page-section">
+            <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+                <div class="section-header">
+                    <h2>About Friday Skates</h2>
+                    <p>Get to know the person behind the brand and lessons.</p>
+                </div>
+                
+                <div class="grid grid-2" style="align-items: center; margin-bottom: 4rem;">
+                    <div>
+                        <img src="img/img5.jpeg" alt="Skater holding skateboard" class="responsive-img shadow" style="border-radius:12px; border:2px solid var(--border-color);">
+                    </div>
+                    <div>
+                        <span class="hero-badge"><i class="fa-solid fa-heart"></i> NOLA Local</span>
+                        <h2 style="font-size:2rem; margin:1rem 0;">Hi, I'm the Founder of Friday Skates</h2>
+                        <p style="color:var(--text-muted); margin-bottom:1rem; line-height:1.7;">
+                            My name Is Henri, and for 5 years skateboarding has been my passion. I started FridaySkates here in New Orleans with the main goal of fostering a larger skateboarding community. Right now the business is largely focused on skate lessons, however ultimately my vision for FridaySkates is hosting skateboarding events locally and starting my own clothing brand alongside the lessons.
+                        </p>
+                        <p style="color:var(--text-muted); margin-bottom:1.5rem; line-height:1.7;">
+                            Whether it's your first time stepping on the board or you're looking to develop your skills on a skateboard I’ll help you gain confidence, learn how to fall and achieve any of your goals.
+                        </p>
+                        <button class="btn btn-primary" onclick="switchPage('lessons')"><i class="fa-solid fa-calendar"></i> Book a 1-on-1 Lesson</button>
+                    </div>
+                </div>
+        </section>
+
+        <!-- SHOP PAGE -->
+        <section id="page-shop" class="page-section">
+            <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+                <div class="section-header">
+                    <h2>Friday Skates Shop</h2>
+                    <p>Official hardgoods, apparel, and accessories.</p>
+                </div>
+
+                <div class="category-pills">
+                    <button class="pill active" onclick="filterShop('all', this)">All Items</button>
+                    <button class="pill" onclick="filterShop('decks', this)">Decks</button>
+                    <button class="pill" onclick="filterShop('apparel', this)">Apparel</button>
+                </div>
+
+                <div class="grid grid-4" id="shopGrid">
+                    <!-- Dynamic Product Cards populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- LESSONS PAGE -->
+        <section id="page-lessons" class="page-section">
+            <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+                <div class="section-header">
+                    <h2>1-on-1 Skate Lessons</h2>
+                    <p>Personalized skateboarding instruction in New Orleans.</p>
+                </div>
+
+                <div style="max-width: 900px; margin: 0 auto;">
+                    <div class="card shadow" style="border: 2px solid var(--accent-neon); background: rgba(18, 18, 20, 0.95); overflow: hidden;">
+                        <div class="grid grid-2" style="align-items: center; gap: 0;">
+                            <div>
+                                <img src="img/img8.jpeg" alt="Skate Lesson Coaching" class="responsive-img" style="height:100%; min-height:350px; object-fit:cover;">
+                            </div>
+                            <div class="card-body" style="padding: 2.5rem;">
+                                <span class="hero-badge" style="margin-bottom:1rem;"><i class="fa-solid fa-user-ninja"></i> Dedicated 1-on-1 Session</span>
+                                <h2 style="font-size: 2.2rem; color: #fff; margin-bottom: 0.5rem;">Private Coaching</h2>
+                                <p style="font-size: 1.8rem; font-weight: 900; color: var(--accent-neon); margin-bottom: 1.5rem;">
+                                    $20 <span style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500;">/ hour</span>
+                                </p>
+                                
+                                <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                                    Skateboarding lessons consist of an hour long one on one session that is planned to accommodate your level, goals, and comfort. Whether you're just trying to learn the fundamentals or trying to figure out tricks like ollies, fs/bs 180s, kickflips… this lesson focuses on personal guidance and real-time feedback on whatever you’re trying to progress on.
+                                </p>
+
+                                <div style="margin-bottom: 2rem;">
+                                    <p style="color: #fff; font-weight: 700; margin-bottom: 0.8rem;">What's Included:</p>
+                                    <ul style="color: var(--text-muted); padding-left: 1.2rem; line-height: 1.8;">
+                                        <li>Individualized step-by-step coaching tailored to you</li>
+                                        <li>Stance, balance, pushing, turning, and safety fundamentals</li>
+                                        <li>Custom trick breakdown (Ollies, Kickflips, Transition, Ledges)</li>
+                                        <li>Skate park etiquette and board setup advice</li>
+                                    </ul>
+                                </div>
+
+                                <button class="btn btn-primary btn-block btn-lg" onclick="scrollToBookingForm()">
+                                    <i class="fa-solid fa-calendar-check"></i> Book Your Session Below
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BOOKING FORM SECTION -->
+                    <div class="card shadow" id="bookingFormSection" style="margin-top: 3rem;">
+                        <div class="card-body" style="padding: 2.5rem;">
+                            <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; text-align: center;">Book Your 1-on-1 Session</h2>
+                            <p style="color: var(--text-muted); text-align: center; margin-bottom: 2rem;">Select your duration and preferred date/time to send your booking request directly via email.</p>
+
+                            <form id="lessonForm" onsubmit="handleLessonBooking(event)">
+                                <div class="grid grid-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Student Full Name *</label>
+                                        <input type="text" id="lessonName" class="form-input" required placeholder="Your full name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Email Address *</label>
+                                        <input type="email" id="lessonEmail" class="form-input" required placeholder="you@example.com">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number *</label>
+                                        <input type="tel" id="lessonPhone" class="form-input" required placeholder="(504) 555-0199">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Lesson Duration ($20/hr)</label>
+                                        <p> 1 hour </p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Preferred Time (Saturday/Sunday) *</label>
+                                        <select id="lessonTime" class="form-select" required>
+                                            <option value="">Select Time Slot</option>
+                                            <option value="9:00 AM">8:30 AM</option>
+                                            <option value="11:00 AM">9:30 AM</option>
+                                            <option value="1:00 PM">4:30 PM</option>
+                                            <option value="3:00 PM">5:30 PM</option>
+                                            <option value="5:00 PM">6:30 PM</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Location</label>
+                                    <p>Burke Playground, New Orleans</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Tell me about your current level or goals</label>
+                                    <textarea id="lessonNotes" class="form-textarea" placeholder="e.g., Complete beginner, want to learn ollies, need help dropping into ramps, etc."></textarea>
+                                </div>
+
+                                <div style="background: var(--bg-card); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                                    <div>
+                                        <span style="color: var(--text-muted); font-size: 0.9rem; display: block;">Calculated Rate:</span>
+                                        <strong style="color: #fff; font-size: 1.1rem;">1-on-1 Coaching @ $20/hr</strong>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <span style="color: var(--text-muted); font-size: 0.9rem; display: block;">Total Cost:</span>
+                                        <strong id="lessonCalculatedTotal" style="color: var(--accent-neon); font-size: 1.8rem;">$20.00</strong>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block btn-lg">
+                                    <i class="fa-solid fa-paper-plane"></i> Send Email Booking Request
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPOT FINDER PAGE -->
+        <section id="page-spots" class="page-section">
+            <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+                <div class="section-header">
+                    <h2>New Orleans Skate Spots</h2>
+                    <p>Explore skate parks, street spots, and smooth crust around NOLA.</p>
+                </div>
+
+                <div class="map-guide-banner">
+                    <div>
+                        <h4 style="color:var(--accent-neon); margin-bottom:0.3rem;"><i class="fa-solid fa-map"></i> OpenStreetMap Active </h4>
+                        <p style="font-size:0.9rem; color:var(--text-muted);">The map below is currently powered by Leaflet & OpenStreetMap, fully interactive out of the box. If you'd like to switch to Google Maps in the future, click the guide on the right.</p>
+                    </div>
+                    <button class="btn btn-outline" style="white-space: nowrap;" onclick="openModal('googleMapsGuideModal')">
+                        <i class="fa-solid fa-code"></i> Google Maps Setup Guide
+                    </button>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                    <div class="category-pills" style="margin-bottom:0;">
+                        <button class="pill active" onclick="filterMapSpots('all', this)">All Spots</button>
+                        <button class="pill" onclick="filterMapSpots('park', this)">Skateparks</button>
+                        <button class="pill" onclick="filterMapSpots('street', this)">Street Ledges/Plazas</button>
+                        <button class="pill" onclick="filterMapSpots('flatground', this)">Flatground/Cruising</button>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('addSpotModal')">
+                        <i class="fa-solid fa-plus"></i> Add a Skate Spot
+                    </button>
+                </div>
+
+                <div class="map-layout">
+                    <div id="map"></div>
+                    <div class="spot-sidebar" id="spotList">
+                        <!-- Dynamic list of spots populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(false)"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3 style="margin:0;"><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
+            <button class="modal-close" onclick="toggleCart(false)">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItemsContainer">
+            <!-- Cart Items JS -->
+        </div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 1.2rem; font-weight: 700;">
+                <span>Total:</span>
+                <span id="cartTotalDisplay">$0.00</span>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" onclick="handleCheckout()">
+                Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ADD SPOT MODAL -->
+    <div class="modal-backdrop" id="addSpotModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-map-pin"></i> Add a NOLA Skate Spot</h3>
+                <button class="modal-close" onclick="closeModal('addSpotModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addSpotForm" onsubmit="saveCustomSpot(event)">
+                    <div class="form-group">
+                        <label class="form-label">Spot Name *</label>
+                        <input type="text" id="newSpotName" class="form-input" required placeholder="e.g. Crescent Park Ledges">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category *</label>
+                        <select id="newSpotCategory" class="form-select" required>
+                            <option value="park">Skatepark</option>
+                            <option value="street">Street Spot</option>
+                            <option value="flatground">Flatground / Smooth Spot</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Latitude *</label>
+                            <input type="number" step="any" id="newSpotLat" class="form-input" required placeholder="29.9511">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Longitude *</label>
+                            <input type="number" step="any" id="newSpotLng" class="form-input" required placeholder="-90.0715">
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                        <i class="fa-solid fa-circle-info"></i> Tip: You can right-click any location on Google Maps or OpenStreetMap to get precise Lat/Lng coordinates.
+                    </p>
+                    <div class="form-group">
+                        <label class="form-label">Description & Bust Factor</label>
+                        <textarea id="newSpotDesc" class="form-textarea" placeholder="Describe the ground, security, obstacles, best time to skate..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add Pin to Map</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- GOOGLE MAPS SETUP GUIDE MODAL -->
+    <div class="modal-backdrop" id="googleMapsGuideModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-map-marked-alt"></i> How to Connect Google Maps API</h3>
+                <button class="modal-close" onclick="closeModal('googleMapsGuideModal')">&times;</button>
+            </div>
+            <div class="modal-body" style="line-height:1.6; color:var(--text-muted);">
+                <p style="color:#fff; margin-bottom:1rem;">Your spot finder currently uses <strong>Leaflet & OpenStreetMap</strong> which works out-of-the-box for free without any API keys!</p>
+                <p>If you prefer to use official <strong>Google Maps JavaScript API</strong>, follow these 3 simple steps:</p>
+                
+                <ol style="padding-left:1.2rem; margin-bottom:1.5rem;">
+                    <li style="margin-bottom:0.8rem;">
+                        <strong style="color:#fff;">Get an API Key:</strong> Go to the <a href="https://console.cloud.google.com/" target="_blank" style="color:var(--accent-neon);">Google Cloud Console</a>, create a project, and enable the <em>Maps JavaScript API</em> to generate an API key.
+                    </li>
+                    <li style="margin-bottom:0.8rem;">
+                        <strong style="color:#fff;">Add Google Script:</strong> Include this tag in your HTML <code>&lt;head&gt;</code>:
+                        <div style="background:#000; padding:0.5rem; border-radius:4px; margin-top:0.3rem; font-family:monospace; color:var(--accent-neon); font-size:0.8rem;">
+                            &lt;script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"&gt;&lt;/script&gt;
+                        </div>
+                    </li>
+                    <li style="margin-bottom:0.8rem;">
+                        <strong style="color:#fff;">Replace Map Script:</strong> Swap the Leaflet initialization function with standard Google Maps syntax:
+                        <div style="background:#000; padding:0.5rem; border-radius:4px; margin-top:0.3rem; font-family:monospace; color:#fff; font-size:0.8rem;">
+                            const map = new google.maps.Map(document.getElementById("map"), { center: { lat: 29.9511, lng: -90.0715 }, zoom: 12 });
+                        </div>
+                    </li>
+                </ol>
+                <button class="btn btn-primary btn-block" onclick="closeModal('googleMapsGuideModal')">Got It!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-3">
+                <div>
+                    <a href="#" class="logo-link" onclick="switchPage('home')" style="margin-bottom:1rem; display:inline-block;">
+                        <img src="img/logo.png" alt="Friday Skates Logo" class="logo-img">
+                        <div class="logo-text">FRIDAY<span>SKATES</span></div>
+                    </a>
+                    <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                        New Orleans skateboarding company focused on expanding the local skate scene. Built by skaters, for skaters.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:1rem;">Quick Links</h4>
+                    <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                        <a href="javascript:void(0)" onclick="switchPage('home')" style="color:var(--text-muted); text-decoration:none;">Home</a>
+                        <a href="javascript:void(0)" onclick="switchPage('about')" style="color:var(--text-muted); text-decoration:none;">About Me</a>
+                        <a href="javascript:void(0)" onclick="switchPage('shop')" style="color:var(--text-muted); text-decoration:none;">Shop Products</a>
+                        <a href="javascript:void(0)" onclick="switchPage('lessons')" style="color:var(--text-muted); text-decoration:none;">1-on-1 Lessons</a>
+                        <a href="javascript:void(0)" onclick="switchPage('spots')" style="color:var(--text-muted); text-decoration:none;">NOLA Spot Finder</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color:#fff; margin-bottom:1rem;">Get In Touch</h4>
+                    <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:0.5rem;">
+                        <i class="fa-solid fa-envelope" style="color:var(--accent-neon);"></i> info@fridayskates.com
+                    </p>
+                    <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:1rem;">
+                        <i class="fa-solid fa-location-dot" style="color:var(--accent-neon);"></i> New Orleans, Louisiana
+                    </p>
+                    <div style="display:flex; gap:1rem;">
+                        <a href="#" style="color:#fff; font-size:1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" style="color:#fff; font-size:1.2rem;"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" style="color:#fff; font-size:1.2rem;"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); color:var(--text-muted); font-size:0.85rem;">
+                &copy; <span id="currentYear"></span> Friday Skates. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS for Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Application Script -->
+    <script>
+        // Store State
+        const products = [
+            {
+                id: 1,
+                name: "Friday Skates Logo Deck",
+                category: "decks",
+                price: 75.00,
+                image: "img/img9.jpeg",
+                description: "7-Ply Canadian Maple, medium concave. Available in 8.0, 8.25, 8.5."
+            },
+            {
+                id: 2,
+                name: "Friday Skates Heavyweight Hoodie",
+                category: "apparel",
+                price: 60.00,
+                image: "img/img9.jpeg",
+                description: "Ultra-soft cotton fleece hoodie with embroidered chest logo."
+            },
+            {
+                id: 3,
+                name: "Friday Skates Tee-shirt",
+                category: "apparel",
+                price: 30.00,
+                image: "img/img9.jpeg",
+                description: "100% preshrunk cotton tee in dark charcoal with brand related graphics."
+            },
+            {
+                id: 4,
+                name: "Friday Skates custom made pants",
+                category: "apparel",
+                price: 100.00,
+                image: "img/img9.jpeg",
+                description: "Custom made branded pants designed for skating comfort and style."
+            }
+        ];
+
+        let cart = [];
+
+        // NOLA Spots Data
+        let spots = [
+            {
+                id: 1,
+                name: "Parisite DIY Skatepark",
+                category: "park",
+                lat: 29.9922,
+                lng: -90.0768,
+                description: "New Orleans' premier official DIY skatepark under the I-610 overpass. Smooth concrete, bowls, ledges, and transition.",
+                bust: "0/5 - Official Park"
+            },
+            {
+                id: 2,
+                name: "Creston Ledges / Lower Ninth",
+                category: "street",
+                lat: 29.9658,
+                lng: -90.0245,
+                description: "Classic marble ledges and smooth flatground area. Great weekend street spot.",
+                bust: "2/5 - Weekend Friendly"
+            },
+            {
+                id: 3,
+                name: "Crescent Park Riverfront",
+                category: "flatground",
+                lat: 29.9592,
+                lng: -90.0520,
+                description: "Miles of ultra-smooth pavement overlooking the Mississippi River. Ideal for cruising and flatground trick practice.",
+                bust: "1/5 - Watch for Pedestrians"
+            },
+            {
+                id: 4,
+                name: "Lakefront Seawall Smooth Path",
+                category: "flatground",
+                lat: 30.0270,
+                lng: -90.0980,
+                description: "Long smooth concrete stretch along Lake Pontchartrain. Fresh breeze and perfect asphalt.",
+                bust: "0/5 - Public Path"
+            }
+        ];
+
+        let leafletMap = null;
+        let mapMarkers = [];
+
+        // Page Navigation System
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.desktop-nav a').forEach(nav => nav.classList.remove('active'));
+
+            const targetSection = document.getElementById(`page-${pageId}`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            const targetNav = document.getElementById(`nav-${pageId}`);
+            if (targetNav) {
+                targetNav.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (pageId === 'spots') {
+                setTimeout(() => {
+                    initMapIfNeeded();
+                }, 100);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            const icon = document.getElementById('mobileMenuIcon');
+            nav.classList.toggle('active');
+            
+            if (nav.classList.contains('active')) {
+                icon.className = "fa-solid fa-xmark";
+            } else {
+                icon.className = "fa-solid fa-bars";
+            }
+        }
+
+        // Shop Functionality
+        function renderShop(items = products) {
+            const grid = document.getElementById('shopGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = items.map(product => `
+                <div class="card product-card">
+                    <img src="${product.image}" alt="${product.name}" class="product-img">
+                    <div class="card-body" style="display:flex; flex-direction:column; justify-content:space-between; flex-grow:1;">
+                        <div>
+                            <span style="font-size:0.75rem; color:var(--accent-neon); text-transform:uppercase; font-weight:700; tracking:1px;">${product.category}</span>
+                            <h3 class="product-title">${product.name}</h3>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:1rem; line-height:1.5;">${product.description}</p>
+                        </div>
+                        <div>
+                            <div class="product-price">$${product.price.toFixed(2)}</div>
+                            <button class="btn btn-primary btn-block" onclick="addToCart(${product.id})">
+                                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterShop(category, btnElement) {
+            document.querySelectorAll('#page-shop .pill').forEach(p => p.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+
+            if (category === 'all') {
+                renderShop(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderShop(filtered);
+            }
+        }
+
+        // Cart Drawer
+        function toggleCart(open) {
+            const overlay = document.getElementById('cartOverlay');
+            const drawer = document.getElementById('cartDrawer');
+            if (open) {
+                overlay.classList.add('active');
+                drawer.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+                drawer.classList.remove('active');
+            }
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        function updateCartQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const container = document.getElementById('cartItemsContainer');
+            const totalDisplay = document.getElementById('cartTotalDisplay');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.textContent = totalItems;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; color:var(--text-muted); padding:3rem 1rem;">
+                        <i class="fa-solid fa-cart-flatbed" style="font-size:3rem; margin-bottom:1rem; opacity:0.5;"></i>
+                        <p>Your cart is currently empty.</p>
+                    </div>
+                `;
+                totalDisplay.textContent = "$0.00";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div style="flex-grow:1;">
+                            <h4 style="font-size:0.95rem; margin-bottom:0.2rem; color:#fff;">${item.name}</h4>
+                            <div style="color:var(--accent-neon); font-weight:700;">$${item.price.toFixed(2)}</div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateCartQuantity(${item.id}, -1)">-</button>
+                                <span style="font-weight:700; color:#fff; min-width:20px; text-align:center;">${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateCartQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalDisplay.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function handleCheckout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            alert("Checkout functionality integrated! In a production deployment, this connects to Stripe or Shopify.");
+            cart = [];
+            updateCartUI();
+            toggleCart(false);
+        }
+
+        // Lesson Calculations and Form Submission
+        function calculateLessonTotal() {
+            const durationSelect = document.getElementById('lessonDuration');
+            const totalDisplay = document.getElementById('lessonCalculatedTotal');
+            if (!durationSelect || !totalDisplay) return;
+
+            const hours = parseInt(durationSelect.value, 10) || 1;
+            const rate = 20; // $20/hr
+            const total = hours * rate;
+
+            totalDisplay.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function scrollToBookingForm() {
+            const formSection = document.getElementById('bookingFormSection');
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function handleLessonBooking(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('lessonName').value;
+            const email = document.getElementById('lessonEmail').value;
+            const phone = document.getElementById('lessonPhone').value;
+            const hours = document.getElementById('lessonDuration').value;
+            const date = document.getElementById('lessonDate').value;
+            const time = document.getElementById('lessonTime').value;
+            const spot = document.getElementById('lessonSpot').value || "To be decided";
+            const notes = document.getElementById('lessonNotes').value || "None provided";
+
+            const total = hours * 20;
+
+            const subject = encodeURIComponent(`1-on-1 Skate Lesson Request from ${name}`);
+            const body = encodeURIComponent(
+                `Hi Friday Skates!\n\n` +
+                `I would like to book a 1-on-1 skateboarding lesson. Here are my details:\n\n` +
+                `• Name: ${name}\n` +
+                `• Email: ${email}\n` +
+                `• Phone: ${phone}\n` +
+                `• Lesson Type: 1-on-1 Coaching ($20/hr)\n` +
+                `• Duration: ${hours} Hour(s)\n` +
+                `• Estimated Total: $${total}.00\n` +
+                `• Preferred Date: ${date}\n` +
+                `• Preferred Time: ${time}\n` +
+                `• Preferred Spot in NOLA: ${spot}\n\n` +
+                `• Skater Experience / Goals:\n${notes}\n\n` +
+                `Looking forward to skating!`
+            );
+
+            // Open mailto client
+            window.location.href = `mailto:info@fridayskates.com?subject=${subject}&body=${body}`;
+
+            alert(`Thank you ${name}! Your default email program has been opened with your booking request details pre-filled. Please click send to finalize your lesson request.`);
+        }
+
+        // Map Functionality
+        function initMapIfNeeded() {
+            if (leafletMap) {
+                leafletMap.invalidateSize();
+                return;
+            }
+
+            // Center on New Orleans
+            leafletMap = L.map('map').setView([29.9600, -90.0600], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(leafletMap);
+
+            renderMapSpots(spots);
+        }
+
+        function renderMapSpots(spotsToRender) {
+            // Clear existing markers
+            mapMarkers.forEach(m => leafletMap.removeLayer(m));
+            mapMarkers = [];
+
+            const sidebar = document.getElementById('spotList');
+            if (sidebar) sidebar.innerHTML = '';
+
+            spotsToRender.forEach(spot => {
+                // Add marker to Leaflet
+                const marker = L.marker([spot.lat, spot.lng]).addTo(leafletMap);
+                marker.bindPopup(`
+                    <div style="color:#000;">
+                        <strong style="font-size:1rem;">${spot.name}</strong><br>
+                        <span style="font-size:0.8rem; text-transform:uppercase; font-weight:700; color:#555;">${spot.category}</span>
+                        <p style="margin-top:0.3rem; font-size:0.85rem;">${spot.description}</p>
+                    </div>
+                `);
+                mapMarkers.push(marker);
+
+                // Add card to sidebar
+                if (sidebar) {
+                    const card = document.createElement('div');
+                    card.className = 'card spot-card';
+                    card.style.cursor = 'pointer';
+                    card.onclick = () => {
+                        leafletMap.setView([spot.lat, spot.lng], 15);
+                        marker.openPopup();
+                    };
+
+                    card.innerHTML = `
+                        <div class="card-body">
+                            <span class="spot-badge">${spot.category}</span>
+                            <h3 style="font-size:1.1rem; margin-bottom:0.4rem; color:#fff;">${spot.name}</h3>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.8rem; line-height:1.4;">${spot.description}</p>
+                            <div style="font-size:0.75rem; color:var(--accent-neon);">
+                                <i class="fa-solid fa-shield-halved"></i> Bust Factor: ${spot.bust}
+                            </div>
+                        </div>
+                    `;
+                    sidebar.appendChild(card);
+                }
+            });
+        }
+
+        function filterMapSpots(category, btnElement) {
+            document.querySelectorAll('#page-spots .pill').forEach(p => p.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+
+            if (category === 'all') {
+                renderMapSpots(spots);
+            } else {
+                const filtered = spots.filter(s => s.category === category);
+                renderMapSpots(filtered);
+            }
+        }
+
+        function saveCustomSpot(e) {
+            e.preventDefault();
+            const name = document.getElementById('newSpotName').value;
+            const category = document.getElementById('newSpotCategory').value;
+            const lat = parseFloat(document.getElementById('newSpotLat').value);
+            const lng = parseFloat(document.getElementById('newSpotLng').value);
+            const desc = document.getElementById('newSpotDesc').value || "User added spot in New Orleans.";
+
+            const newSpot = {
+                id: Date.now(),
+                name: name,
+                category: category,
+                lat: lat,
+                lng: lng,
+                description: desc,
+                bust: "User Submitted Spot"
+            };
+
+            spots.push(newSpot);
+            renderMapSpots(spots);
+            closeModal('addSpotModal');
+            document.getElementById('addSpotForm').reset();
+            
+            // Focus on new spot
+            leafletMap.setView([lat, lng], 14);
+        }
+
+        // Modal Helpers
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) modal.classList.remove('active');
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderShop();
+            calculateLessonTotal();
+            const yearElem = document.getElementById('currentYear');
+            if (yearElem) yearElem.textContent = new Date().getFullYear();
+
+            // Set default date picker to tomorrow
+            const datePicker = document.getElementById('lessonDate');
+            if (datePicker) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                datePicker.value = tomorrow.toISOString().split('T')[0];
+            }
+        });
+    </script>
+</body>
+</html>
